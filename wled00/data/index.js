@@ -1364,8 +1364,8 @@ function updateSelectedFx()
 function displayRover(i,s)
 {
 	gId('rover').style.transform = (i.live && s.lor == 0 && i.liveseg<0) ? "translateY(0px)":"translateY(100%)";
-	var sour = i.lip ? i.lip:""; if (sour.length > 2) sour = " from " + sour;
-	gId('lv').innerHTML = `ARGB HSL is receiving live ${i.lm} data${sour}`;
+	var sour = i.lip ? i.lip:""; if (sour.length > 2) sour = " từ máy chủ " + sour;
+	gId('lv').innerHTML = `ARGB HSL đang nhận sóng dữ liệu ${i.lm} ${sour}`;
 	gId('roverstar').style.display = (i.live && s.lor) ? "block":"none";
 }
 
