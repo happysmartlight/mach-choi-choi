@@ -34,7 +34,7 @@ void WLED::reset()
     yield();        // enough time to send response to client
   }
   applyBri();
-  DEBUG_PRINTLN(F("WLED RESET"));
+  DEBUG_PRINTLN(F("ARGB HSL RESET"));
   ESP.restart();
 }
 
@@ -358,7 +358,7 @@ void WLED::setup()
   Serial.setDebugOutput(false); // switch off kernel messages when using USBCDC
   #endif
   DEBUG_PRINTLN();
-  DEBUG_PRINTF_P(PSTR("---WLED %s %u INIT---\n"), versionString, VERSION);
+  DEBUG_PRINTF_P(PSTR("---ARGB HSL %s %u INIT---\n"), versionString, VERSION);
   DEBUG_PRINTLN();
 #ifdef ARDUINO_ARCH_ESP32
   DEBUG_PRINTF_P(PSTR("esp32 %s\n"), ESP.getSdkVersion());
@@ -489,7 +489,7 @@ void WLED::setup()
   //Serial RX (Adalight, Improv, Serial JSON) only possible if GPIO3 unused
   //Serial TX (Debug, Improv, Serial JSON) only possible if GPIO1 unused
   if (serialCanRX && serialCanTX) {
-    Serial.println(F("Ada"));
+    Serial.println(F("\n\n\nAda - bangnguyendev - Phone: 0784140494"));
   }
   #endif
 
