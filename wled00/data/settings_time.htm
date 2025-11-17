@@ -152,6 +152,99 @@
 		<button type="button" id="locbtn" onclick="getLatLon()">Lấy vị trí</button>
 		<div><i>(mở tab mới, chỉ hoạt động trong trình duyệt)</i></div>
 		<div id="sun" class="times"></div>
+		<div style="background:#0a0f1a;color:#e0e0e0;padding:20px;border-radius:12px;">
+
+		<i style="color:#ff8ed6;">
+			Đồng hồ digital: sử dụng "Scrolling Text": 
+			<b>#DATE0, #TIME, #DDMM, #MMDD, #HHMM, #HH, #MM;</b>
+		</i><br>
+
+		<div style="padding:15px;">
+
+			<div style="
+			display:grid;
+			grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+			gap:10px;
+			text-align:left;
+			">
+
+			<!-- Item -->
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#TIME" style="color:#00eaff;font-weight:bold;text-decoration:none;">#TIME</a> - HH:MM AM/PM
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#HHMM" style="color:#00eaff;font-weight:bold;text-decoration:none;">#HHMM</a> - HH:MM
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#DATE" style="color:#00eaff;font-weight:bold;text-decoration:none;">#DATE</a> - DD.MM.YYYY
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#DDMM" style="color:#00eaff;font-weight:bold;text-decoration:none;">#DDMM</a> - Day.Month
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#MMDD" style="color:#00eaff;font-weight:bold;text-decoration:none;">#MMDD</a> - Month/Day
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#YYYY" style="color:#00eaff;font-weight:bold;text-decoration:none;">#YYYY</a> - Year
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#YY" style="color:#00eaff;font-weight:bold;text-decoration:none;">#YY</a> - Year 2-digit
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#HH" style="color:#00eaff;font-weight:bold;text-decoration:none;">#HH</a> - Hours
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#MM" style="color:#00eaff;font-weight:bold;text-decoration:none;">#MM</a> - Minutes
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#SS" style="color:#00eaff;font-weight:bold;text-decoration:none;">#SS</a> - Seconds
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#MO" style="color:#00eaff;font-weight:bold;text-decoration:none;">#MO</a> - Month number
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#DD" style="color:#00eaff;font-weight:bold;text-decoration:none;">#DD</a> - Day number
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#MON" style="color:#00eaff;font-weight:bold;text-decoration:none;">#MON</a> - Month (Jan)
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#MONL" style="color:#00eaff;font-weight:bold;text-decoration:none;">#MONL</a> - Month (January)
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#DAY" style="color:#00eaff;font-weight:bold;text-decoration:none;">#DAY</a> - Weekday (Mon)
+			</div>
+
+			<div style="padding:10px 14px;background:rgba(0,255,255,0.06);border:1px solid rgba(0,255,255,0.3);border-radius:10px;">
+				<a href="#" class="tk" data-t="#DDDD" style="color:#00eaff;font-weight:bold;text-decoration:none;">#DDDD</a> - Weekday (Monday)
+			</div>
+
+			</div>
+
+			<div style="margin:10px;padding-top:10px;border-top:1px solid #444;color:#ff8ed6;">
+			<strong>Tips:</strong><br>
+			• Mix văn bản & token: <span style="color:#00eaff">\"It's #HHMM O'Clock\"</span><br>
+			• Leading zero: <span style="color:#00eaff">#TIME0, #HH0</span>, v.v.
+			</div>
+
+		</div>
+		</div>
+		
+		
 		<h3>Đồng hồ kim</h3>
 		Đồng hồ kim: <input type="checkbox" name="OL" onchange="Cs()"><br>
 		<div id="cac">
