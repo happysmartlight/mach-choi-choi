@@ -93,3 +93,5 @@
 
 #define WLED_VERSION 2.0_HSL_IPEX
 #define WLED_MAX_BUTTONS 1   // Maximum number of buttons (2 on ESP32, 4 on other boards by default)
+
+#define WLED_REPO "HappySmartLight"
