@@ -38,7 +38,7 @@ constexpr size_t FIXED_PALETTE_COUNT = DYNAMIC_PALETTE_COUNT + FASTLED_PALETTE_C
 #define DEFAULT_AP_SSID     WLED_BRAND "-AP"
 #define DEFAULT_AP_PASS     "wled1234"
 #define DEFAULT_OTA_PASS    "wledota"
-#define DEFAULT_MDNS_NAME   "x"
+#define DEFAULT_MDNS_NAME   "hsl"
 
 //increase if you need more
 #ifndef WLED_MAX_WIFI_COUNT
