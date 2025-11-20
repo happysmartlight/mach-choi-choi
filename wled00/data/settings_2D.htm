@@ -254,12 +254,80 @@ Y: <input name="P${i}Y" type="number" min="0" max="255" value="0" oninput="UI()"
 		<!-- <div class="helpB"><button type="button" onclick="H('features/2D')">?</button></div> -->
 		<button type="button" onclick="B()">Quay lại</button><button type="button" onclick="fS()">Lưu cấu hình</button><hr>
 	</div>
-	<h2>Cài đặt 2D</h2>
-	Dải hoặc bảng:
-	<select id="somp" name="SOMP" onchange="resetPanels();addPanels();UI();" >
-		<option value="0">Dải 1D</option>
-		<option value="1">Ma trận 2D</option>
-	</select><br>
+	<style>
+	.neon-section {
+		/* background: #0a0a0f; */
+		padding: 20px;
+		border-radius: 12px;
+		border: 1px solid #222;
+		box-shadow: 0 0 20px rgba(0, 255, 255, 0.05),
+					0 0 30px rgba(255, 0, 150, 0.05);
+		color: #e0e0e0;
+		font-family: "Segoe UI", sans-serif;
+	}
+
+	.neon-title {
+		font-size: 22px;
+		font-weight: 700;
+		margin-bottom: 10px;
+		color: #ff2fbf;
+		text-shadow: 0 0 8px #ff2fbf, 0 0 15px #ff2fbf;
+	}
+
+	.neon-section p {
+		color: #ccc;
+		margin: 6px 0;
+	}
+
+	.neon-label {
+		display: block;
+		margin-top: 14px;
+		margin-bottom: 6px;
+		font-size: 15px;
+		font-weight: 500;
+		color: #00eaff;
+		text-shadow: 0 0 6px #00eaff;
+	}
+
+	.neon-select {
+		background: #111;
+		color: #fff;
+		border: 1px solid #ff2fbf;
+		padding: 8px 12px;
+		border-radius: 6px;
+		font-size: 14px;
+		cursor: pointer;
+		outline: none;
+		transition: 0.25s;
+		box-shadow: 0 0 8px rgba(255, 0, 200, 0.4);
+	}
+
+	.neon-select:hover {
+		border-color: #00eaff;
+		box-shadow: 0 0 12px #00eaff, 0 0 20px rgba(0, 255, 255, 0.4);
+	}
+
+	.neon-select option {
+		background: #0f0f13;
+		color: #fff;
+	}
+	</style>
+
+	<div class="neon-section">
+	<h2>Cài đặt LED 2D</h2>
+
+	<p>Nếu bạn đang sử dụng ma trận LED 2D (LED panel), hãy cấu hình tại đây.</p>
+	<p>Nếu bạn điều khiển hiệu ứng qua <b>xLights</b>, bạn có thể bỏ qua mục này để mặc định <b>"Dải LED 1D"</b>.</p>
+
+	<label for="somp" class="neon-label">Chế độ hiển thị:</label>
+
+	<select id="somp" name="SOMP" class="neon-select"
+			onchange="resetPanels(); addPanels(); UI();">
+		<option value="0">Dải LED 1D</option>
+		<option value="1">Ma trận LED 2D</option>
+	</select>
+	</div>
+
 	<div id="mpdiv" style="display:none;">
 		<hr class="sml">
 		<h3>Trình tạo Ma trận <button type="button" id="expGen" onclick="expand(this,gId('mxGen'));">&gt;</button></h3>
