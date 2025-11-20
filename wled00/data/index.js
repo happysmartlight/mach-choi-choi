@@ -2533,7 +2533,7 @@ function delP(i) {
 		populatePresets();
 		gId('putil').classList.add('staybot');
 	} else {
-		bt.style.color = "var(--c-r)";
+		bt.style.color = "#feed00";
 		bt.innerHTML = "<i class='icons btn-icon'>&#xe037;</i>Delete!";
 		bt.dataset.cnf = 1;
 	}
@@ -2739,7 +2739,7 @@ function cnfReset()
 {
 	if (!cnfr) {
 		var bt = gId('resetbtn');
-		bt.style.color = "var(--c-r)";
+		bt.style.color = "#feed00";
 		bt.innerHTML = "Xác nhận Reboot";
 		cnfr = true; return;
 	}
@@ -2751,7 +2751,7 @@ function rSegs()
 {
 	var bt = gId('rsbtn');
 	if (!cnfrS) {
-		bt.style.color = "var(--c-r)";
+		bt.style.color = "#feed00";
 		bt.innerHTML = "Xác nhận reset";
 		cnfrS = true; return;
 	}
