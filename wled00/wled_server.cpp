@@ -17,14 +17,14 @@
 
 
 // define flash strings once (saves flash memory)
-static const char s_redirecting[] PROGMEM = "Redirecting...";
+static const char s_redirecting[] PROGMEM = "Dang chuyen huong...";
 static const char s_content_enc[] PROGMEM = "Content-Encoding";
-static const char s_unlock_ota [] PROGMEM = "Please unlock OTA in security settings!";
-static const char s_unlock_cfg [] PROGMEM = "Please unlock settings using PIN code!";
-static const char s_rebooting  [] PROGMEM = "Rebooting now...";
-static const char s_notimplemented[] PROGMEM = "Not implemented";
-static const char s_accessdenied[]   PROGMEM = "Access Denied";
-static const char s_not_found[]      PROGMEM = "Not found";
+static const char s_unlock_ota [] PROGMEM = "Vui long mo khoa OTA trong cau hinh bao mat!";
+static const char s_unlock_cfg [] PROGMEM = "Vui long mo khoa \"Cau hinh\" bang ma PIN!";
+static const char s_rebooting  [] PROGMEM = "Dang khoi dong lai...";
+static const char s_notimplemented[] PROGMEM = "Chua duoc thuc hien";
+static const char s_accessdenied[]   PROGMEM = "Truy cap bi tu choi";
+static const char s_not_found[]      PROGMEM = "Khong tim thay";
 static const char s_wsec[]           PROGMEM = "wsec.json";
 static const char s_func[]           PROGMEM = "func";
 static const char s_list[]           PROGMEM = "list";
@@ -173,10 +173,10 @@ static String msgProcessor(const String& var)
       messageBody += F(")</script>");
     } else if (optt == 253)
     {
-      messageBody += F("<br><br><form action=/settings><button class=\"bt\" type=submit>Back</button></form>"); //button to settings
+      messageBody += F("<br><br><form action=/settings><button class=\"bt\" type=submit>Quay lai</button></form>"); //button to settings
     } else if (optt == 254)
     {
-      messageBody += F("<br><br><button type=\"button\" class=\"bt\" onclick=\"B()\">Back</button>");
+      messageBody += F("<br><br><button type=\"button\" class=\"bt\" onclick=\"B()\">Quay lai</button>");
     }
     return messageBody;
   }
@@ -464,7 +464,7 @@ void initServer()
 #endif
 
   server.on(F("/teapot"), HTTP_GET, [](AsyncWebServerRequest *request){
-    serveMessage(request, 418, F("418. I'm a teapot."), F("(Tangible Embedded Advanced Project Of Twinkling)"), 254);
+    serveMessage(request, 418, F("418. Happy Smart Light."), F("(Quay lai trang chu thoi nao!)"), 254);
   });
 
   server.on(F("/upload"), HTTP_POST, [](AsyncWebServerRequest *request) {},
@@ -676,7 +676,7 @@ void serveSettingsJS(AsyncWebServerRequest* request)
   }
   byte subPage = request->arg(F("p")).toInt();
   if (subPage > 10) {
-    request->send_P(501, FPSTR(CONTENT_TYPE_JAVASCRIPT), PSTR("alert('Settings for this request are not implemented.');"));
+    request->send_P(501, FPSTR(CONTENT_TYPE_JAVASCRIPT), PSTR("alert('Cai dat cho yeu cau nay chua duoc thuc hien.');"));
     return;
   }
   if (subPage > 0 && !correctPIN && strlen(settingsPIN)>0) {
