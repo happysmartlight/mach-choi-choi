@@ -3315,27 +3315,21 @@ function showVersionUpgradePrompt(info, oldVersion, newVersion) {
 	dialog.style.cssText = 'background:var(--c-1);border-radius:10px;padding:25px;max-width:500px;margin:20px;box-shadow:0 4px 6px rgba(0,0,0,0.3);';
 
 	// Build contextual message based on install vs upgrade
-	const title = isInstall
-		? '🎉 Thank you for installing WLED!'
-		: '🎉 WLED Upgrade Detected!';
+	const title = '🎉 Cảm ơn bạn đã sử dụng <br>ARGB Happy Smart Light!';
 
-	const description = isInstall
-		? `You are now running WLED <strong style="text-wrap: nowrap">${newVersion}</strong>.`
-		: `Your WLED has been upgraded from <strong style="text-wrap: nowrap">${oldVersion}</strong> to <strong style="text-wrap: nowrap">${newVersion}</strong>.`;
+	const description = `Happy Smart Light xin chân thành cảm ơn Quý khách đã tin tưởng và sử dụng sản phẩm mạch điều khiển của chúng tôi. <br><br>Sự ủng hộ của Quý khách là động lực để chúng tôi không ngừng cải thiện và mang đến những trải nghiệm tốt hơn trong tương lai!`;
 
-	const question = 'Help make WLED better with a one-time hardware report? It includes only device details like chip type, LED count, etc. — never personal data or your activities.'
+	const question = 'Bạn có muốn tham khảo các sản phẩm khác của nhà <strong style="text-wrap: nowrap">Happy Smart Light</strong> không?';
 
 	dialog.innerHTML = `
 		<h2 style="margin-top:0;color:var(--c-f);">${title}</h2>
 		<p style="color:var(--c-f);">${description}</p>
 		<p style="color:var(--c-f);">${question}</p>
 		<p style="color:var(--c-f);font-size:0.9em;">
-			<a href="https://kno.wled.ge/about/privacy-policy/" target="_blank" style="color:var(--c-6);">Learn more about what data is collected and why</a>
+			<a href="https://happysmartlight.com/" target="_blank" style="color:var(--c-6);">🛒Tìm hiểu thêm các sản phẩm khác của nhà Happy Smart Light.</a>
 		</p>
 		<div style="margin-top:20px;">
-			<button id="versionReportYes" class="btn">Yes</button>
-			<button id="versionReportNo" class="btn">Not Now</button>
-			<button id="versionReportNever" class="btn">Never Ask</button>
+			<button id="versionReportNever" class="btn">Xin cảm ơn!</button>
 		</div>
 	`;
 
@@ -3356,12 +3350,12 @@ function showVersionUpgradePrompt(info, oldVersion, newVersion) {
 	gId('versionReportNever').addEventListener('click', () => {
 		updateVersionInfo(newVersion, true);
 		d.body.removeChild(overlay);
-		showToast('You will not be asked again.');
+		showToast('Không hiển thị lại nữa');
 	});
 }
 
 function reportUpgradeEvent(info, oldVersion) {
-	showToast('Reporting upgrade...');
+	showToast('Đang báo cáo nâng cấp...');
 
 	// Fetch fresh data from /json/info endpoint as requested
 	fetch(getURL('/json/info'), {
@@ -3400,16 +3394,16 @@ function reportUpgradeEvent(info, oldVersion) {
 		})
 		.then(res => {
 			if (res.ok) {
-				showToast('Thank you for reporting!');
+				showToast('Cảm ơn bạn đã báo cáo!');
 				updateVersionInfo(info.ver, false);
 			} else {
-				showToast('Report failed. Please try again later.', true);
+				showToast('Báo cáo thất bại. Vui lòng thử lại sau.', true);
 				// Do NOT update version info on failure - user will be prompted again
 			}
 		})
 		.catch(e => {
-			console.log('Failed to report upgrade', e);
-			showToast('Report failed. Please try again later.', true);
+			console.log('Lỗi báo cáo nâng cấp:', e);
+			showToast('Báo cáo thất bại. Vui lòng thử lại sau.', true);
 			// Do NOT update version info on error - user will be prompted again
 		});
 }
@@ -3431,10 +3425,10 @@ function updateVersionInfo(version, neverAsk) {
 	})
 		.then(res => res.text())
 		.then(data => {
-			console.log('Version info updated', data);
+			console.log('Thông tin phiên bản đã được cập nhật', data);
 		})
 		.catch(e => {
-			console.log('Failed to update version-info.json', e);
+			console.log('Không thể cập nhật version-info.json', e);
 		});
 }
 
