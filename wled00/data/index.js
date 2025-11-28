@@ -3324,33 +3324,53 @@ function showVersionUpgradePrompt(info, oldVersion, newVersion) {
 	dialog.innerHTML = `
 		<h2 style="margin-top:0;color:var(--c-f);">${title}</h2>
 		<p style="color:var(--c-f);">${description}</p>
+		<hr style="border:none;height:3px;background:linear-gradient(to right, #ff00ff, #00eaff);box-shadow:0 0 8px #ff00ff, 0 0 8px #00eaff;">
 		<p style="color:var(--c-f);">${question}</p>
 		<p style="color:var(--c-f);font-size:0.9em;">
 			<a href="https://happysmartlight.com/" target="_blank" style="color:var(--c-6);">🛒Tìm hiểu thêm các sản phẩm khác của nhà Happy Smart Light.</a>
 		</p>
 		<div style="margin-top:20px;">
-			<button id="versionReportNever" class="btn">Xin cảm ơn!</button>
+			<button id="versionReportNever" class="btn-thanks"
+				style="
+					padding:10px 22px;
+					font-size:1em;
+					background:linear-gradient(90deg, #ff00ff, #00eaff);
+					border:none;
+					border-radius:8px;
+					color:white;
+					cursor:pointer;
+					font-weight:600;
+					text-shadow:0 0 6px #ff00ff;
+					box-shadow:
+						0 0 8px #ff00ff,
+						0 0 12px #00eaff;
+					transition:0.25s;
+				"
+				onmouseover="this.style.boxShadow='0 0 12px #ff00ff, 0 0 18px #00eaff, 0 0 25px #ff00ff'"
+				onmouseout="this.style.boxShadow='0 0 8px #ff00ff, 0 0 12px #00eaff'">
+				Đóng bảng tin!
+			</button>
 		</div>
 	`;
 
 	overlay.appendChild(dialog);
 	d.body.appendChild(overlay);
 
-	// Add event listeners
-	gId('versionReportYes').addEventListener('click', () => {
-		reportUpgradeEvent(info, oldVersion);
-		d.body.removeChild(overlay);
-	});
+	// // Add event listeners
+	// gId('versionReportYes').addEventListener('click', () => {
+	// 	reportUpgradeEvent(info, oldVersion);
+	// 	d.body.removeChild(overlay);
+	// });
 
-	gId('versionReportNo').addEventListener('click', () => {
-		// Don't update version, will ask again on next load
-		d.body.removeChild(overlay);
-	});
+	// gId('versionReportNo').addEventListener('click', () => {
+	// 	// Don't update version, will ask again on next load
+	// 	d.body.removeChild(overlay);
+	// });
 
 	gId('versionReportNever').addEventListener('click', () => {
 		updateVersionInfo(newVersion, true);
 		d.body.removeChild(overlay);
-		showToast('Không hiển thị lại nữa');
+		// showToast('Không hiển thị lại nữa');
 	});
 }
 
@@ -3425,7 +3445,7 @@ function updateVersionInfo(version, neverAsk) {
 	})
 		.then(res => res.text())
 		.then(data => {
-			console.log('Thông tin phiên bản đã được cập nhật', data);
+			console.log('Thông tin phiên bản đã được cập nhật lên version-info.json', data);
 		})
 		.catch(e => {
 			console.log('Không thể cập nhật version-info.json', e);
