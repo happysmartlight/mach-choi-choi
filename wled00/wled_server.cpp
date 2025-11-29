@@ -741,16 +741,16 @@ void serveSettings(AsyncWebServerRequest* request, bool post) {
     }
     if (subPage != SUBPAGE_WIFI || !(wifiLock && otaLock)) handleSettingsSet(request, subPage);
 
-    char s[32];
+    char s[100];
     char s2[45] = "";
 
     switch (subPage) {
-      case SUBPAGE_WIFI   : strcpy_P(s, PSTR("WiFi")); strcpy_P(s2, PSTR("Vui long ket noi den IP moi (neu thay doi)")); break;
-      case SUBPAGE_LEDS   : strcpy_P(s, PSTR("LED")); break;
-      case SUBPAGE_UI     : strcpy_P(s, PSTR("UI")); break;
-      case SUBPAGE_SYNC   : strcpy_P(s, PSTR("Sync")); break;
-      case SUBPAGE_TIME   : strcpy_P(s, PSTR("Time")); break;
-      case SUBPAGE_SEC    : strcpy_P(s, PSTR("Security")); if (doReboot) strcpy_P(s2, PSTR("Dang khoi dong lai, cho khoang ~10 giay...")); break;
+      case SUBPAGE_WIFI   : strcpy_P(s, PSTR("Cai dat WiFi")); strcpy_P(s2, PSTR("Vui long ket noi den IP moi (neu thay doi)")); break;
+      case SUBPAGE_LEDS   : strcpy_P(s, PSTR("Cai dat LED")); break;
+      case SUBPAGE_UI     : strcpy_P(s, PSTR("Cai dat giao dien")); break;
+      case SUBPAGE_SYNC   : strcpy_P(s, PSTR("Cai dat mach dong bo")); break;
+      case SUBPAGE_TIME   : strcpy_P(s, PSTR("Cai dat thoi gian")); break;
+      case SUBPAGE_SEC    : strcpy_P(s, PSTR("Cai dat bao mat")); if (doReboot) strcpy_P(s2, PSTR("Dang khoi dong lai, cho khoang ~10 giay...")); break;
 #ifdef WLED_ENABLE_DMX
       case SUBPAGE_DMX    : strcpy_P(s, PSTR("DMX")); break;
 #endif
@@ -761,7 +761,7 @@ void serveSettings(AsyncWebServerRequest* request, bool post) {
       case SUBPAGE_PINREQ : strcpy_P(s, correctPIN ? PSTR("Ma PIN chinh xac!") : PSTR("Ma PIN bi tu choi!")); break;
     }
 
-    if (subPage != SUBPAGE_PINREQ) strcat_P(s, PSTR(" settings saved."));
+    if (subPage != SUBPAGE_PINREQ) strcat_P(s, PSTR(" da luu cau hinh thanh cong."));
 
     if (subPage == SUBPAGE_PINREQ && correctPIN) {
       subPage = originalSubPage; // on correct PIN load settings page the user intended
@@ -810,7 +810,7 @@ void serveSettings(AsyncWebServerRequest* request, bool post) {
 #endif
     case SUBPAGE_LOCK    : {
       correctPIN = !strlen(settingsPIN); // lock if a pin is set
-      serveMessage(request, 200, strlen(settingsPIN) > 0 ? PSTR("Settings locked") : PSTR("No PIN set"), FPSTR(s_redirecting), 1);
+      serveMessage(request, 200, strlen(settingsPIN) > 0 ? PSTR("Cai dat hien dang bi khoa") : PSTR("No PIN set"), FPSTR(s_redirecting), 1);
       return;
     }
     case SUBPAGE_PINREQ  :  content = PAGE_settings_pin;  len = PAGE_settings_pin_length; code = 401;                 break;
