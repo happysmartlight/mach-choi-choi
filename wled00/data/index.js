@@ -35,10 +35,10 @@ var cfg = {
 var hol = [
 	[0, 11, 24, 4, "https://aircoookie.github.io/xmas.png"],		// christmas
 	[0, 2, 17, 1, "https://images.alphacoders.com/491/491123.jpg"],	// st. Patrick's day
-	[2026, 3, 5, 2, "https://aircoookie.github.io/easter.png"],		// easter 2026
-	[2027, 2, 28, 2, "https://aircoookie.github.io/easter.png"],	// easter 2027
+	// [2026, 3, 5, 2, "https://aircoookie.github.io/easter.png"],		// easter 2026
+	// [2027, 2, 28, 2, "https://aircoookie.github.io/easter.png"],	// easter 2027
 	//[2028, 3, 16, 2, "https://aircoookie.github.io/easter.png"],	// easter 2028
-	[0, 6, 4, 1, "https://images.alphacoders.com/516/516792.jpg"],	// 4th of July
+	// [0, 6, 4, 1, "https://images.alphacoders.com/516/516792.jpg"],	// 4th of July
 	[0, 0, 1, 1, "https://images.alphacoders.com/119/1198800.jpg"]	// new year
 ];
 
@@ -222,7 +222,7 @@ function onLoad()
 		loc = true;
 		locip = localStorage.getItem('locIp');
 		if (!locip) {
-			locip = prompt("File Mode. Please enter ARGB IP!");
+			locip = prompt(" Nhập địa chỉ IP ARGB!");
 			localStorage.setItem('locIp', locip);
 		}
 	} else {
@@ -260,7 +260,7 @@ function onLoad()
 			//TODO: do some parsing first
 		})
 		.catch((e)=>{
-			console.log("No array of holidays in holidays.json. Defaults loaded.");
+			console.log("Không có mảng ngày lễ trong holidays.json. Đã tải mặc định.");
 		})
 		.finally(()=>{
 			loadBg();
@@ -289,7 +289,7 @@ function onLoad()
 			if (cfg.comp.css) await loadSkinCSS('skinCss');
 			if (!ws) makeWS();
 		} catch(e) {
-			showToast("Init failed: " + e, true);
+			showToast("Khởi tạo thất bại: " + e, true);
 		}
 	})();
 	resetUtil();
@@ -350,7 +350,7 @@ function showToast(text, error = false)
 function showErrorToast()
 {
 	gId('connind').style.backgroundColor = "var(--c-r)";
-	showToast('Connection to light failed!', true);
+	showToast('Kết nối tới ARGB thất bại - mất kết nối!', true);
 }
 
 function clearErrorToast(n=5000)
@@ -397,9 +397,9 @@ function checkUsed(i)
 {
 	var id = gId(`p${i}id`).value;
 	if (pJson[id] && (i == 0 || id != i))
-		gId(`p${i}warn`).innerHTML = `&#9888; Overwriting ${pName(id)}!`;
+		gId(`p${i}warn`).innerHTML = `&#9888; Ghi đè ${pName(id)}!`;
 	else
-		gId(`p${i}warn`).innerHTML = id>250?"&#9888; ID must be 250 or less.":"";
+		gId(`p${i}warn`).innerHTML = id>250?"&#9888; Số ID phải nhỏ hơn hoặc bằng 250.":"";
 }
 
 function pName(i)
@@ -677,7 +677,7 @@ function populateInfo(i)
 {
 	var cn="";
 	var pwr = i.leds.pwr;
-	var pwru = "Not calculated";
+	var pwru = "Không tính được";
 	if (pwr > 1000) {pwr /= 1000; pwr = pwr.toFixed((pwr > 10) ? 0 : 1); pwru = pwr + " A";}
 	else if (pwr > 0) {pwr = 50 * Math.round(pwr/50); pwru = pwr + " mA";}
 	var urows="";
