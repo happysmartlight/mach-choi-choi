@@ -3315,7 +3315,7 @@ function showVersionUpgradePrompt(info, oldVersion, newVersion) {
 	dialog.style.cssText = 'background:var(--c-1);border-radius:10px;padding:25px;max-width:500px;margin:20px;box-shadow:0 4px 6px rgba(0,0,0,0.3);';
 
 	// Build contextual message based on install vs upgrade
-	const title = '🎉 Cảm ơn bạn đã sử dụng <br>ARGB Happy Smart Light!';
+	const title = '🎉🎉🎉🎉🎉<br>Cảm ơn bạn đã chọn<br>ARGB Happy Smart Light!';
 
 	const description = `Happy Smart Light xin chân thành cảm ơn Quý khách đã tin tưởng và sử dụng sản phẩm mạch điều khiển của chúng tôi. <br><br>Sự ủng hộ của Quý khách là động lực để chúng tôi không ngừng cải thiện và mang đến những trải nghiệm tốt hơn trong tương lai!`;
 
