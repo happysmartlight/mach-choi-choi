@@ -22,7 +22,7 @@
 #define CLIENT_PASS "Your_Password"
 */
 
-#define MAX_LEDS 4000       // Maximum total LEDs. More than 1500 might create a low memory situation on ESP8266.
+#define MAX_LEDS 5000       // Maximum total LEDs. More than 1500 might create a low memory situation on ESP8266.
 #define MDNS_NAME "hsl"    // mDNS hostname, ie: *.local
 #define SERVERNAME "ARGB" // HTTP server description
 #define WLED_PIN "1907"    // PIN for settings pages
@@ -86,12 +86,17 @@
   *
   * ================================================================
   */  
+// #define CLIENT_SSID_DEV "OLIVE BERRY 2.4G" // Your WIFI SSID
+// #define CLIENT_PASS_DEV "zxcvbnm@123" // Your WIFI password
+
 #define CLIENT_SSID "OLIVE BERRY 2.4G" // Your WIFI SSID
 #define CLIENT_PASS "zxcvbnm@123" // Your WIFI password
+
+// #define CLIENT_SSID "NHA TRO 757 T1-1" // Your WIFI SSID
+// #define CLIENT_PASS "11111111" // Your WIFI password
 
 #define WLED_OTA_PASS    "argbota"
 
 #define WLED_VERSION 2.0_HSL_IPEX
-#define WLED_MAX_BUTTONS 1   // Maximum number of buttons (2 on ESP32, 4 on other boards by default)
 
 #define WLED_REPO "HappySmartLight"
