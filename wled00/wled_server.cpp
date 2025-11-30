@@ -15,16 +15,16 @@
 #include "html_cpal.h"
 #include "html_edit.h"
 
-
+// Bản encode HTML entity chuẩn ARGB tiếng Việt
 // define flash strings once (saves flash memory)
-static const char s_redirecting[] PROGMEM = "Dang chuyen huong...";
+static const char s_redirecting[] PROGMEM = "<span>&#x110;ang chuy&#x1EC3;n h&#x1B0;&#x1EDB;ng trang...</span>"; // Đang chuyển hướng trang... |OK
 static const char s_content_enc[] PROGMEM = "Content-Encoding";
-static const char s_unlock_ota [] PROGMEM = "Vui long mo khoa OTA trong cau hinh bao mat!";
-static const char s_unlock_cfg [] PROGMEM = "Vui long mo khoa \"Cau hinh\" bang ma PIN!";
-static const char s_rebooting  [] PROGMEM = "Dang khoi dong lai...";
-static const char s_notimplemented[] PROGMEM = "Chua duoc thuc hien";
-static const char s_accessdenied[]   PROGMEM = "Truy cap bi tu choi";
-static const char s_not_found[]      PROGMEM = "Khong tim thay";
+static const char s_unlock_ota [] PROGMEM = "<span>Vui l&#xF2;ng m&#x1EDD; kh&#xF3;a OTA trong c&#x1EA5;u h&#xEC;nh b&#xE1;o m&#x1EB9;t!</span>"; // Vui lòng mở khóa OTA trong cấu hình bảo mật! | OK
+static const char s_unlock_cfg [] PROGMEM = "<span>Vui l&#xF2;ng m&#x1EDD; kh&#xF3;a &quot;C&#x1EA5;u h&#xEC;nh&quot; b&#x1EB1;ng m&#xE3; PIN!</span>!"; // Vui lòng mở khóa "Cấu hình" bằng mã PIN! | OK
+static const char s_rebooting  [] PROGMEM = "<span>&#x1F501; &#x110;ang kh&#x1EDF;i &#x111;&#x1ED9;ng l&#x1EA1;i...</span>"; // Đang khởi động lại... | OK
+static const char s_notimplemented[] PROGMEM = "<span>T&#xED;nh n&#x103;ng ch&#x1B0;a kh&#x1EA3; d&#x1EE5;ng</span>"; // Tính năng chưa khả dụng |OK
+static const char s_accessdenied[]   PROGMEM = "<span>Truy c&#x1EAD;p b&#x1ECB; t&#x1EEB; ch&#x1ED1;i</span>"; // Truy cập bị từ chối |OK
+static const char s_not_found[]      PROGMEM = "<span>Kh&#xF4;ng t&#xEC;m th&#x1EA5;y</span>"; // Không tìm thấy
 static const char s_wsec[]           PROGMEM = "wsec.json";
 static const char s_func[]           PROGMEM = "func";
 static const char s_list[]           PROGMEM = "list";
@@ -173,10 +173,10 @@ static String msgProcessor(const String& var)
       messageBody += F(")</script>");
     } else if (optt == 253)
     {
-      messageBody += F("<br><br><form action=/settings><button class=\"bt\" type=submit>Quay lai</button></form>"); //button to settings
+      messageBody += F("<br><br><form action=/settings><button class=\"bt\" type=submit><span>&#x1F519; Quay l&#x1EA1;i</span></button></form>"); //button to settings Quay lại
     } else if (optt == 254)
     {
-      messageBody += F("<br><br><button type=\"button\" class=\"bt\" onclick=\"B()\">Quay lai</button>");
+      messageBody += F("<br><br><button type=\"button\" class=\"bt\" onclick=\"B()\"><span>&#x1F519; Quay l&#x1EA1;i</span></button> <a href=\"/settings/leds\"><button type=\"button\" class=\"bt\"><span>&#x1F511; M&#x1EDD;&#x20;kh&#xF3;a&#x20;PIN</span></button></a>"); //button to go back Quay lại Mở khóa PIN
     }
     return messageBody;
   }
@@ -206,10 +206,10 @@ static void handleUpload(AsyncWebServerRequest *request, const String& filename,
     request->_tempFile.close();
     if (filename.indexOf(F("cfg.json")) >= 0) { // check for filename with or without slash
       doReboot = true;
-      request->send(200, FPSTR(CONTENT_TYPE_PLAIN), F("Config restore ok.\nRebooting..."));
+      request->send(200, FPSTR(CONTENT_TYPE_PLAIN), F("<span>Kh&#xF4;i ph&#x1EE5;c c&#x1EA5;u h&#xEC;nh th&#xE0;nh c&#xF4;ng.<br>&#x110;ang kh&#x1EDD;i &#x111;&#xF4;ng l&#xE1;i...</span>")); // Khôi phục cấu hình thành công. Đang khởi động lại...
     } else {
       if (filename.indexOf(F("palette")) >= 0 && filename.indexOf(F(".json")) >= 0) loadCustomPalettes();
-      request->send(200, FPSTR(CONTENT_TYPE_PLAIN), F("File Uploaded!"));
+      request->send(200, FPSTR(CONTENT_TYPE_PLAIN), F("<span>T&#x1EC7;p tin &#x111;&#xE3; &#x111;&#x1B0;&#x1EE3;c t&#x1EA3;i l&#xEA;n!</span>")); // Tập tin đã tải lên!
     }
     cacheInvalidate++;
   }
@@ -374,9 +374,12 @@ void initServer()
     serveSettings(request);
   });
 
+  static const char s_reboot_msg[] PROGMEM =
+    "<span>&#x23F3; Vui l&#xF2;ng ch&#x1EDD; m&#xE1;y kh&#x1EDF;i &#x111;&#x1ED9;ng l&#x1EA1;i, kho&#x1EA3;ng 10 gi&#xE2;y!</span>"; // ⏳ Vui lòng chờ máy khởi động lại, khoảng 10 giây! | OK
+
   server.on(F("/reset"), HTTP_GET, [](AsyncWebServerRequest *request){
-    serveMessage(request, 200, FPSTR(s_rebooting), F("Vui long cho khoang ~10 giay."), 131);
-    doReboot = true;
+      serveMessage(request, 200, FPSTR(s_rebooting), FPSTR(s_reboot_msg), 131);
+      doReboot = true;
   });
 
   server.on(F("/settings"), HTTP_POST, [](AsyncWebServerRequest *request){
@@ -529,7 +532,7 @@ void initServer()
   });
 #else
   const auto notSupported = [](AsyncWebServerRequest *request){
-    serveMessage(request, 501, FPSTR(s_notimplemented), F("Phien ban khong ho tro cap nhat OTA."), 254);
+    serveMessage(request, 501, FPSTR(s_notimplemented), F("<span>Kh&#xF4;ng c&#x1EAD;p nh&#x1EAD;t OTA</span>."), 254); // Không cập nhật OTA | OK
   };
   server.on(_update, HTTP_GET, notSupported);
   server.on(_update, HTTP_POST, notSupported, [](AsyncWebServerRequest *request, String filename, size_t index, uint8_t *data, size_t len, bool isFinal){});
@@ -676,11 +679,11 @@ void serveSettingsJS(AsyncWebServerRequest* request)
   }
   byte subPage = request->arg(F("p")).toInt();
   if (subPage > 10) {
-    request->send_P(501, FPSTR(CONTENT_TYPE_JAVASCRIPT), PSTR("alert('Cai dat cho yeu cau nay chua duoc thuc hien.');"));
+    request->send_P(501, FPSTR(CONTENT_TYPE_JAVASCRIPT), PSTR("alert('C&#224;i &#273;&#7863;t ch&#432;a &#273;&#432;&#7907;c th&#7921;c hi&#7879;n.');")); // Cài đặt chưa được thực hiện. | OK
     return;
   }
   if (subPage > 0 && !correctPIN && strlen(settingsPIN)>0) {
-    request->send_P(401, FPSTR(CONTENT_TYPE_JAVASCRIPT), PSTR("alert('PIN khong chinh xac.');"));
+    request->send_P(401, FPSTR(CONTENT_TYPE_JAVASCRIPT), PSTR("alert('M&#227; PIN sai &#10060;.');")); // Mã PIN sai ❌.
     return;
   }
   
@@ -718,7 +721,7 @@ void serveSettings(AsyncWebServerRequest* request, bool post) {
     else if (url.indexOf(F("lock")) > 0) subPage = SUBPAGE_LOCK;
   }
   else if (url.indexOf("/update") >= 0) subPage = SUBPAGE_UPDATE; // update page, for PIN check
-  //else if (url.indexOf("/edit")   >= 0) subPage = 10;
+  // else if (url.indexOf("/edit")   >= 0) subPage = 15;
   else subPage = SUBPAGE_WELCOME;
 
   bool pinRequired = !correctPIN && strlen(settingsPIN) > 0 && (subPage >= SUBPAGE_WIFI && subPage < SUBPAGE_LOCK);
@@ -741,27 +744,27 @@ void serveSettings(AsyncWebServerRequest* request, bool post) {
     }
     if (subPage != SUBPAGE_WIFI || !(wifiLock && otaLock)) handleSettingsSet(request, subPage);
 
-    char s[100];
-    char s2[45] = "";
+    char s[255];
+    char s2[255] = "";
 
     switch (subPage) {
-      case SUBPAGE_WIFI   : strcpy_P(s, PSTR("Cai dat WiFi")); strcpy_P(s2, PSTR("Vui long ket noi den IP moi (neu thay doi)")); break;
-      case SUBPAGE_LEDS   : strcpy_P(s, PSTR("Cai dat LED")); break;
-      case SUBPAGE_UI     : strcpy_P(s, PSTR("Cai dat giao dien")); break;
-      case SUBPAGE_SYNC   : strcpy_P(s, PSTR("Cai dat mach dong bo")); break;
-      case SUBPAGE_TIME   : strcpy_P(s, PSTR("Cai dat thoi gian")); break;
-      case SUBPAGE_SEC    : strcpy_P(s, PSTR("Cai dat bao mat")); if (doReboot) strcpy_P(s2, PSTR("Dang khoi dong lai, cho khoang ~10 giay...")); break;
+      case SUBPAGE_WIFI   : strcpy_P(s, PSTR("&#9881;&#65039; C&#224;i &#273;&#7863;t WiFi")); strcpy_P(s2, PSTR("<span>&#x1F50D; Vui l&#xF2;ng qu&#xE9;t IP m&#x1EDB;i v&#xE0; truy c&#x1EAD;p ho&#x1EB7;c Discover Xlights</span>")); break; // ⚙️ Cài đặt WiFi
+      case SUBPAGE_LEDS   : strcpy_P(s, PSTR("&#9881;&#65039; C&#224;i &#273;&#7863;t LED")); break;
+      case SUBPAGE_UI     : strcpy_P(s, PSTR("&#9881;&#65039; C&#224;i &#273;&#7863;t giao di&#7879;n")); break; // ⚙️ Cài đặt giao diện
+      case SUBPAGE_SYNC   : strcpy_P(s, PSTR("&#9881;&#65039; C&#224;i &#273;&#7863;t m&#225;ch &#273;&#7893;ng b&#7893;")); break; // ⚙️ Cài đặt mạch đồng bộ
+      case SUBPAGE_TIME   : strcpy_P(s, PSTR("&#9881;&#65039; C&#224;i &#273;&#7863;t th&#7901;i gian")); break; // ⚙️ Cài đặt thời gian
+      case SUBPAGE_SEC    : strcpy_P(s, PSTR("&#9881;&#65039; C&#224;i &#273;&#7863;t b&#7843;o m&#7853;t")); if (doReboot) strcpy_P(s2, PSTR("&#x1F551; &#x110;ang kh&#x1EDF;i &#x111;&#x1ED9;ng l&#x1EA1;i, kho&#x1EA3;ng 10 gi&#xE2;y...")); break;
 #ifdef WLED_ENABLE_DMX
       case SUBPAGE_DMX    : strcpy_P(s, PSTR("DMX")); break;
 #endif
-      case SUBPAGE_UM     : strcpy_P(s, PSTR("Usermods")); break;
+      case SUBPAGE_UM     : strcpy_P(s, PSTR("&#9881;&#65039; C&#224;i &#273;&#7863;t Usermods")); break; // ⚙️ Cài đặt Usermods
 #ifndef WLED_DISABLE_2D
-      case SUBPAGE_2D     : strcpy_P(s, PSTR("2D")); break;
+      case SUBPAGE_2D     : strcpy_P(s, PSTR("&#9881;&#65039; C&#224;i &#273;&#7863;t 2D")); break; // ⚙️ Cài đặt 2D
 #endif
-      case SUBPAGE_PINREQ : strcpy_P(s, correctPIN ? PSTR("Ma PIN chinh xac!") : PSTR("Ma PIN bi tu choi!")); break;
+      case SUBPAGE_PINREQ : strcpy_P(s, correctPIN ? PSTR("<span>&#x2705; M&#xE3; PIN ch&#xED;nh x&#xE1;c!</span>") : PSTR("<span>&#x274C; M&#xE3; PIN sai!</span>")); break; // ✅ Mã PIN chính xác! ❌ Mã PIN sai!
     }
 
-    if (subPage != SUBPAGE_PINREQ) strcat_P(s, PSTR(" da luu cau hinh thanh cong."));
+    if (subPage != SUBPAGE_PINREQ) strcat_P(s, PSTR(" &#x2714; &#x110;&#xE3; l&#x01B0;u c&#x1EA5;u h&#x00EC;nh th&#xE0;nh c&#x00F4;ng.")); // ✔ Đã lưu cấu hình thành công.
 
     if (subPage == SUBPAGE_PINREQ && correctPIN) {
       subPage = originalSubPage; // on correct PIN load settings page the user intended
@@ -810,7 +813,7 @@ void serveSettings(AsyncWebServerRequest* request, bool post) {
 #endif
     case SUBPAGE_LOCK    : {
       correctPIN = !strlen(settingsPIN); // lock if a pin is set
-      serveMessage(request, 200, strlen(settingsPIN) > 0 ? PSTR("Cai dat hien dang bi khoa") : PSTR("No PIN set"), FPSTR(s_redirecting), 1);
+      serveMessage(request, 200, strlen(settingsPIN) > 0 ? PSTR("<span>&#x1F512; C&#224;i &#273;&#7863;t hi&#7879;n &#273;ang b&#7883; kh&#243;a</span>") : PSTR("No PIN set"), FPSTR(s_redirecting), 1); // 🔒 Cài đặt hiện đang bị khóa
       return;
     }
     case SUBPAGE_PINREQ  :  content = PAGE_settings_pin;  len = PAGE_settings_pin_length; code = 401;                 break;

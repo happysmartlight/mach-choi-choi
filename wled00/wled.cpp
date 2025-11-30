@@ -445,6 +445,7 @@ void WLED::setup()
 
   WLED_SET_AP_SSID(); // otherwise it is empty on first boot until config is saved
   multiWiFi.push_back(WiFiConfig(CLIENT_SSID,CLIENT_PASS)); // initialise vector with default WiFi
+  // multiWiFi.push_back(WiFiConfig(CLIENT_SSID_DEV,CLIENT_PASS_DEV)); // initialise vector with default WiFi
 
   if(!verifyConfig()) {
     if(!restoreConfig()) {

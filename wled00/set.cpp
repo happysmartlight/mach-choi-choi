@@ -579,7 +579,7 @@ void handleSettingsSet(AsyncWebServerRequest *request, byte subPage)
       #ifdef WLED_ADD_EEPROM_SUPPORT
       clearEEPROM();
       #endif
-      serveMessage(request, 200, F("Tat ca cai dat da bi xoa."), F("Ket noi voi ARGB-AP de thiet lap lai"), 255);
+      serveMessage(request, 200, F("<span>T&#x1EA5;t c&#x1EA3; c&#xE0;i &#273;&#x1EB7;t &#x111;&#xE3; &#x111;&#x1B0;&#x1EE3;c x&#xF3;a!</span>"), F("Ket noi voi ARGB-AP de thiet lap lai!"), 255); // Vietnamese: "Tất cả cài đặt đã được xóa!! Kết nối với ARGB-AP để thiết lập lại!"
       doReboot = true; // may reboot immediately on dual-core system (race condition) which is desireable in this case
     }
 
