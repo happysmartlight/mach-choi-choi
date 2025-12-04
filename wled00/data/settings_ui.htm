@@ -227,7 +227,9 @@
 	<form id="form_s" name="Sf" method="post">
 		<div class="toprow">
 		<!-- <div class="helpB"><button type="button" onclick="H('features/settings/#user-interface-settings')">?</button></div> -->
-		<button type="button" onclick="B()">Quay lại</button><button type="button" onclick="Save()">Lưu</button><br>
+		<button type="button" onclick="B()">🔙 Quay lại</button>
+		<button type="button" onclick="Save()">💾 Lưu</button>
+		<button type="button" onclick="window.location.href='/edit'">📁 Quản lý tệp</button><hr>
 		<span id="lssuc" style="color:green; display:none">&#10004; Cài đặt giao diện đã lưu!</span>
 		<span id="lserr" style="color:red; display:none">&#9888; Không thể truy cập bộ nhớ cục bộ. Hãy đảm bảo nó được bật trong trình duyệt của bạn.</span><hr>
 		</div>
@@ -276,7 +278,9 @@
 		<div id="holidays">Holidays: <input type="file" name="data2" accept=".json"> <input type="button" value="Upload" onclick="uploadFile(d.Sf.data2,'/holidays.json');"><br></div>
 		<div id="toast"></div>
 		<hr><button type="button" onclick="cLS()">Xóa bộ nhớ cục bộ</button>
-		<hr><button type="button" onclick="B()">Quay lại</button><button type="button" onclick="Save()">Lưu</button>
+		<hr><button type="button" onclick="B()">🔙 Quay lại</button>
+		<button type="button" onclick="Save()">💾 Lưu</button>
+		<button type="button" onclick="window.location.href='/edit'">📁 Quản lý tệp</button>
 	</form>
 </body>
 </html>

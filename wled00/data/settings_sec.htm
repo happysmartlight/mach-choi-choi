@@ -43,9 +43,12 @@
 	<form id="form_s" name="Sf" method="post">
 		<div class="toprow">
 		<!-- <div class="helpB"><button type="button" onclick="H('features/settings/#security-settings')">?</button></div> -->
-		<button type="button" onclick="B()">Quay lại</button><button type="submit">Lưu</button><hr>
+		<button type="button" onclick="B()">🔙 Quay lại</button>
+		<button type="submit">💾 Lưu</button>
+		<button type="button" onclick="window.location.href='/edit'">📁 Quản lý tệp</button>
+		<hr>
 		</div>
-		<h2>Cài đặt Bảo mật & Cập nhật</h2>
+		<h2>Bảo mật & Cập nhật</h2>
 		<div class="warn">&#9888; Bỏ trống và Lưu nếu không muốn sử dụng mã PIN!</div>
 		<label for="PIN" style="font-weight:bold; color:#e0e0e0;">Mã PIN cài đặt:</label>
 		<input
@@ -111,7 +114,9 @@
 		<hr>
 		Phiên bản cài đặt: <span class="sip">ARGB HSL ##VERSION##</span><hr>
 		<div id="toast"></div>
-		<button type="button" onclick="B()">Quay lại</button><button type="submit">Lưu</button>
+		<button type="button" onclick="B()">🔙 Quay lại</button>
+		<button type="submit">💾 Lưu</button>
+		<button type="button" onclick="window.location.href='/edit'">📁 Quản lý tệp</button>
 	</form>
 </body>
 </html>

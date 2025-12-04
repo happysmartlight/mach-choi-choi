@@ -861,7 +861,10 @@ Swap: <select id="xw${s}" name="XW${s}">
 	<form id="form_s" name="Sf" method="post">
 		<div class="toprow">
 		<!-- <div class="helpB"><button type="button" onclick="H('features/settings/#led-settings')">?</button></div> -->
-		<button type="button" onclick="B()">Quay lại</button><button type="submit">Lưu</button><hr>
+		<button type="button" onclick="B()">🔙 Quay lại</button>
+		<button type="submit">💾 Lưu</button>
+		<button type="button" onclick="window.location.href='/edit'">📁 Quản lý tệp</button>
+		<hr>
 		</div>
 		<h2>LED &amp; cài đặt phần cứng</h2>
 		Total LEDs: <span id="lc">?</span> <span id="pc"></span><br>
@@ -997,7 +1000,9 @@ Swap: <select id="xw${s}" name="XW${s}">
 		<hr class="sml">
 		<div id="cfg">Config template: <input type="file" name="data2" accept=".json"><button type="button" class="sml" onclick="loadCfg(d.Sf.data2)">Apply</button><br></div>
 		<hr>
-		<button type="button" onclick="B()">Quay lại</button><button type="submit">Lưu</button>
+		<button type="button" onclick="B()">🔙 Quay lại</button>
+		<button type="submit">💾 Lưu</button>
+		<button type="button" onclick="window.location.href='/edit'">📁 Quản lý tệp</button>
 	</form>
 	<div id="toast"></div>
 </body>
