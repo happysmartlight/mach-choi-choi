@@ -176,7 +176,7 @@ static String msgProcessor(const String& var)
       messageBody += F("<br><br><form action=/settings><button class=\"bt\" type=submit><span>&#x1F519; Quay l&#x1EA1;i</span></button></form>"); //button to settings Quay lại
     } else if (optt == 254)
     {
-      messageBody += F("<br><br><button type=\"button\" class=\"bt\" onclick=\"B()\"><span>&#x1F519; Quay l&#x1EA1;i</span></button> <a href=\"/settings/leds\"><button type=\"button\" class=\"bt\"><span>&#x1F511; M&#x1EDD;&#x20;kh&#xF3;a&#x20;PIN</span></button></a>"); //button to go back Quay lại Mở khóa PIN
+      messageBody += F("<br><br><button type=\"button\" class=\"bt\" onclick=\"B()\"><span>&#x1F519; Quay l&#x1EA1;i</span></button> <a href=\"/settings/sec\"><button type=\"button\" class=\"bt\"><span>&#x1F511; M&#x1EDD;&#x20;kh&#xF3;a&#x20;PIN</span></button></a>"); //button to go back Quay lại Mở khóa PIN
     }
     return messageBody;
   }
