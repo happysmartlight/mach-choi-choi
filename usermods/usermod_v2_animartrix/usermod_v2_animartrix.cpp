@@ -431,6 +431,7 @@ class AnimartrixUsermod : public Usermod {
       }
     }
 
+	/*
     void addToJsonInfo(JsonObject& root)
     {
       char myStringBuffer[16]; // buffer for snprintf()
@@ -448,6 +449,7 @@ class AnimartrixUsermod : public Usermod {
       return USERMOD_ID_ANIMARTRIX;
     }
 
+	*/
 };
 
 static AnimartrixUsermod animartrix_module("Animartrix", false);

@@ -190,17 +190,17 @@ function createTop(element, editor){
 	path.type = "text";
 	path.maxLength = "31"; // limit filename length
 
-	var uploadBtn = cE("button"); uploadBtn.className = "sml"; uploadBtn.innerHTML = "Upload File";
-	var clearBtn = cE("button"); clearBtn.className = "sml"; clearBtn.innerHTML = "Clear";
-	var saveBtn = cE("button"); saveBtn.className = "sml"; saveBtn.innerHTML = "Save";
-	var backBtn = cE("button"); backBtn.className = "sml"; backBtn.innerHTML = "Quay lai dieu khien LED"; backBtn.onclick = function(){ window.location.href = getURL("/"); };
+	var uploadBtn = cE("button"); uploadBtn.className = "sml"; uploadBtn.innerHTML = "T&#x1EA3;i l&#xEA;n t&#x1EC7;p &#x1F4E4;"; // Tải lên tệp 📤
+	var clearBtn = cE("button"); clearBtn.className = "sml"; clearBtn.innerHTML = "X&#xF3;a n&#x1ED9;i dung &#x1F5D1;&#xFE0F;"; // Xóa nội dung 🗑️
+	var saveBtn = cE("button"); saveBtn.className = "sml"; saveBtn.innerHTML = "L&#x1B0;u n&#x1ED9;i dung t&#x1EC7;p &#x1F4BE;"; // Luu nội dung tệp tin 💾
+	var backBtn = cE("button"); backBtn.className = "sml"; backBtn.innerHTML = "&#x1F519;&#x1F4A1; Quay l&#x1EA1;i &#x111;i&#x1EC1;u khi&#x1EC3;n LED"; backBtn.onclick = function(){ window.location.href = getURL("/"); };
 
 	// Add elements to Top
 	leftDiv.appendChild(path);
 	leftDiv.appendChild(clearBtn);
 	leftDiv.appendChild(saveBtn);
 	leftDiv.appendChild(uploadBtn);
-	centerDiv.innerHTML = "ARGB - Chinh sua tep tin";
+	centerDiv.innerHTML = "ARGB - Ch&#x1EC9;nh s&#x1EED;a t&#x1EC7;p tin &#x1F4C1;"; // ARGB - Chỉnh sửa tệp tin 📁 | OK
 	rightDiv.appendChild(backBtn);
 	gId(element).appendChild(input);
 	gId(element).appendChild(leftDiv);
@@ -214,7 +214,7 @@ function createTop(element, editor){
 	function httpPostCb(st,resp){
 		if (st!=200) alert("ERROR "+st+": "+resp);
 		else {
-			showToast("Upload successful!");
+			showToast("T&#x1EA3;i l&#xEA;n th&#xE0;nh c&#xF4;ng! &#x2705;"); // Tải lên thành công! ✅
 			refreshTree();
 		}
 	}

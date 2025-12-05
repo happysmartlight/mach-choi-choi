@@ -488,7 +488,7 @@ static_assert(WLED_MAX_BUSSES <= 32, "WLED_MAX_BUSSES exceeds hard limit");
     #elif defined(ARDUINO_ARCH_ESP32C3)
       #define MAX_LED_MEMORY 32768
     #else
-      #define MAX_LED_MEMORY 65536
+      #define MAX_LED_MEMORY 98304
     #endif
   #endif
 #endif
